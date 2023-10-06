@@ -1,0 +1,102 @@
+[
+{
+    "name": "Duracion del evento",
+    "description": "Cuanto tiempo va a durar el evento"
+  },
+  {
+    "name": "Pulep",
+    "description": "portal unico de espectaculos publicos de las artes escenicas"
+  },
+  {
+    "name": "info para pulep",
+    "description": "Contenido para poder generar el pulep"
+  },
+  {
+    "name": "Rider Tecnico",
+    "description": "Pendiente descripcion"
+  },
+  {
+    "name": "cronograma",
+    "description": "fechas en las qeu se realiza el evento y sus sub eventos"
+  },
+  {
+    "name": "Plano de luces",
+    "description": "distribucion de las luces en el evento"
+  },
+  {
+    "name": "boleteria",
+    "description": "pendiente"
+  },
+  {
+    "name": "repertorio",
+    "description": "pendiente"
+  },
+  {
+    "name": "tramite sayco",
+    "description": "pendiente"
+  },
+  {
+    "name": "tramite acinpro",
+    "description": "pendiente"
+  },
+  {
+    "name": "licencia sayco",
+    "description": "pendiente"
+  },
+  {
+    "name": "licencia acinpro",
+    "description": "pendiente"
+  },
+  {
+    "name": "piezas publicitarias",
+    "description": "pendiente"
+  },
+  {
+    "name": "infor transporte",
+    "description": "pendiente"
+  },
+  {
+    "name": "info alimentacion",
+    "description": "pendiente"
+  },
+  {
+    "name": "ambulancia",
+    "description": "pendiente"
+  },
+  {
+    "name": "acomodadores",
+    "description": "pendiente"
+  },
+  {
+    "name": "catering",
+    "description": "pendiente"
+  },
+  {
+    "name": "Tiquetera",
+    "description": "pendiente"
+  },
+{
+    "name": "Transporte",
+    "description": "pendiente"
+  },
+  {
+    "name": "Permiso Gobierno",
+    "description": "pendiente"
+  },
+{
+    "name": "Arqued acomodadores",
+    "description": "pendiente"
+  },
+  {
+    "name": "Liquidacion de boletería",
+    "description": "pendiente"
+  },
+{
+    "name": "Liquidar Eventos ",
+    "description": "pendiente"
+  },
+  {
+    "name": "Encuestas de satisfacción",
+    "description":"pendiente"
+  }
+]
