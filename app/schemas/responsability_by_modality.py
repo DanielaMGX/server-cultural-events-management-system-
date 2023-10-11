@@ -29,6 +29,9 @@ class responsabilityByModeDB(BaseModel):
     mode_id: int = Field(...)
     space_id: int = Field(...)
     id: int = Field(...)
+    responsability_name: Optional[str] = Field(None)  
+    mode_name: Optional[str] = Field(None)  
+    space_name: Optional[str] = Field(None)  
 
     class Config:
         orm_mode = True
