@@ -53,14 +53,15 @@ sudo docker volume create aplicativo-db
 ```
 
 ```
-sudo docker-compose up -d --build
+sudo docker-compose -f docker/Docker-compose.dev.yml build
 ```
 
 Luego:
 
 
 ```
-sudo docker-compose up
+sudo docker-compose -f docker/Docker-compose.dev.yml up
+
 ```
 
 
