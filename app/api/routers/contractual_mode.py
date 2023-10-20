@@ -1,6 +1,6 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
-from fastapi.responses import JSONResponse, Response
+from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import JSONResponse
 
 from app.schemas.contractual_mode import (
     CreateContractualMode, 

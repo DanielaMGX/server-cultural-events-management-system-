@@ -29,7 +29,7 @@ class CRUDresponsabilityByMode(CRUDBase[ResponsabilityByMode, Createresponsabili
 ) -> List[Dict[str, Any]]:
         
         query = self.model.filter(**payload) if payload else self.model
-        models = await query.all().offset(skip).limit(limit)
+        models = await query.all().offset(skip).limit(limit).order_by("id")
         
         results = []
         for model in models:
