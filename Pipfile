@@ -4,14 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "==0.74.0"
-uvicorn = "==0.17.5"
+fastapi = "*"
+uvicorn = "*"
 gunicorn = "==20.1.0"
 httptools = "==0.3.0"
 uvloop = "==0.16.0"
 tortoise-orm = "==0.18.1"
 asyncpg = "==0.25.0"
 email-validator = "*"
+google-cloud-storage = "*"
+python-multipart = "*"
+pydantic-settings = "*"
 
 [dev-packages]
 debugpy = "*"

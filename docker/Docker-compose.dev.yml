@@ -14,9 +14,9 @@ services:
       - 10001:10001
     environment:
       - DEBUGGER=False
-      - WEB_APP_VERSION=0.1.0
-      - WEP_APP_TITLE=aplicativo-db
-      - WEP_APP_DESCRIPTION=Database service for Aplicativo
+      - VERSION=0.1.0
+      - TITLE=aplicativo-db
+      - DESCRIPTION=Database service for Aplicativo
       - ENVIRONMENT=dev
       - POSTGRES_DATABASE_URL=postgres://postgres:postgres@aplicativo-db:5432/aplicativo_db
       - POSTGRES_DATABASE_TEST_URL=sqlite://./storage/aplicativo_db_test
