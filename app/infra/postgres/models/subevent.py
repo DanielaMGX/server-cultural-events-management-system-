@@ -16,3 +16,8 @@ class SubEvent(Model):
         "models.Space",
         related_name="subevents"
     )
+    event = fields.ForeignKeyField(
+        "models.Event",
+        related_name="subevents",
+        null=True
+    )

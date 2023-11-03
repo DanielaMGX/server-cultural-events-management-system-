@@ -7,12 +7,14 @@ class CreateSubevent(BaseModel):
     responsability_id: int = Field(...)
     mode_id: int = Field(...)
     space_id: int = Field(...)
+    event_id: int = Field(...)
 
 class UpdateSubevent(BaseModel):
     applies: bool = Field(None)
     responsability_id: int = Field(None)
     mode_id: int = Field(None)
     space_id: int = Field(None)
+    event_id: int = Field(None) 
 
 class SubeventDB(CreateSubevent):
     id: int = Field(...)
