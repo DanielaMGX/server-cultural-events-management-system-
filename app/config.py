@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     DESCRIPTION: str = Field(..., env="WEP_APP_DESCRIPTION")
     ENVIRONMENT: str = Field(...)
     POSTGRES_DATABASE_URL: str = Field(...)
-
+    BUCKET_NAME: str = Field(...)
     DEFAULT_DATA: bool = Field(...)
 
 

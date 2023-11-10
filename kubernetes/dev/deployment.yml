@@ -13,7 +13,7 @@ spec:
       labels:
         app: aplicativo-capacity-db
         scope: aplicativo-capacity
-        tier: backend
+        tier: bucket
     spec:
       nodeSelector:
         type: "principal"
