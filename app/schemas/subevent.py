@@ -1,29 +1,29 @@
-
-from pydantic import BaseModel, Field
-from typing import List
+from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
+from datetime import date, datetime
 
 class CreateSubevent(BaseModel):
-    applies: bool = Field(...)
-    responsability_id: int = Field(...)
-    mode_id: int = Field(...)
-    space_id: int = Field(...)
-    event_id: int = Field(...)
-
-class UpdateSubevent(BaseModel):
-    applies: bool = Field(None)
-    responsability_id: int = Field(None)
-    mode_id: int = Field(None)
-    space_id: int = Field(None)
-    event_id: int = Field(None) 
+    id: str
+    applies: bool
+    responsabilityId: int
+    modeId: int
+    spaceId: int
+    eventId: str
 
 class SubeventDB(CreateSubevent):
-    id: int = Field(...)
+    id: Optional[str]
+    dateStart: Optional[date]
+    dateFinishing: Optional[date]
+    mountingDate: Optional[date]
+    mountingStartHour: Optional[str]
+    mountingFinishingHour: Optional[str]
 
     class Config:
         orm_mode = True
 
-class SubeventInResponse(BaseModel):
-    subevent: SubeventDB
-
-class SubeventsInResponse(BaseModel):
-    subevents: List[SubeventDB]
+class UpdateSubevent(BaseModel):
+    applies: Optional[bool] = None
+    responsabilityId: Optional[int] = None
+    modeId: Optional[int] = None
+    spaceId: Optional[int] = None
+    eventId: Optional[str] = None

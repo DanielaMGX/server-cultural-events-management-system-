@@ -1,23 +1,33 @@
-
 from tortoise import Model, fields
 
 class SubEvent(Model):
-    id = fields.IntField(pk=True)
-    applies = fields.BooleanField()
-    responsability = fields.ForeignKeyField(
-        "models.Responsability",
-        related_name="subevents"
-    )
-    mode = fields.ForeignKeyField(
-        "models.ContractualMode",
-        related_name="subevents"
-    )
-    space = fields.ForeignKeyField(
-        "models.Space",
-        related_name="subevents"
-    )
-    event = fields.ForeignKeyField(
-        "models.Event",
-        related_name="subevents",
-        null=True
-    )
+    id = fields.CharField(pk=True, max_length=50)
+    event_type = fields.CharField(max_length=255, null=True)
+    event_id = fields.CharField(max_length=255, null=True)
+    general_name = fields.CharField(max_length=255, null=True)
+    specific_name = fields.CharField(max_length=255, null=True)
+    date_start = fields.CharField(max_length=30, null=True)
+    date_finishing = fields.CharField(max_length=30, null=True)
+    hour_start = fields.CharField(max_length=30, null=True)
+    hour_finishing = fields.CharField(max_length=30, null=True)
+    place = fields.CharField(max_length=255, null=True)
+    user_name = fields.CharField(max_length=255, null=True)
+    phone = fields.CharField(max_length=50, null=True)
+    identification_type = fields.CharField(max_length=255, null=True)
+    identification_value = fields.CharField(max_length=255, null=True)
+    email = fields.CharField(max_length=255, null=True)
+    description = fields.TextField(null=True)
+    observation = fields.TextField(null=True)
+    duration = fields.CharField(max_length=50, null=True)
+    mounting_date = fields.CharField(max_length=30, null=True)
+    mounting_start_hour = fields.CharField(max_length=30, null=True)
+    mounting_finishing_hour = fields.CharField(max_length=30, null=True)
+    technic_contact = fields.CharField(max_length=255, null=True)
+    rider = fields.CharField(max_length=255, null=True)
+    min_to_min = fields.CharField(max_length=255, null=True)
+    communication_contact = fields.CharField(max_length=255, null=True)
+    pulep = fields.CharField(max_length=255, null=True)
+    access_data = fields.TextField(null=True)
+    ticket_company = fields.CharField(max_length=255, null=True)
+    age_restriction = fields.CharField(max_length=255, null=True)
+    agreement = fields.CharField(max_length=255, null=True)
