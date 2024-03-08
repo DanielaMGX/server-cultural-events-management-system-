@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.api.routers import bucket, responsability_by_modality, responsability, contractual_mode, space, root, event, subevent, eventstate_router
+from app.api.routers import bucket, responsability_by_modality, responsability, contractual_mode, space, root, event, subevent, eventstate_router, subeventstates
 
 
 api_router = APIRouter()
@@ -12,3 +12,4 @@ api_router.include_router(event.router, prefix="/events", tags=["Events"])
 api_router.include_router(subevent.router, prefix="/subevents", tags=["Subevents"])
 api_router.include_router(bucket.router, prefix="/bucket", tags=["Bucket"])
 api_router.include_router(eventstate_router, prefix="/eventstate", tags=["EventState"])
+api_router.include_router(subeventstate_router, prefix="/subeventstate", tags=["SubEventState"])

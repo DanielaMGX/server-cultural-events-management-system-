@@ -5,3 +5,4 @@ from .space import Space
 from .event import Event
 from .subevent import SubEvent
 from eventstate import EventState
+from subeventstate import SubEventState
