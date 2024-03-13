@@ -1,23 +1,23 @@
-from datetime import date, time
+from datetime import date
 from pydantic import BaseModel, Field
 
 class CreateHistoryEventState(BaseModel):
-    date: date = Field(...)
-    time: time = Field(...)
+    day: date = Field(...) 
+    time:str = Field(...)
     state: str = Field(...)
     justification: str = Field(None)
     event_id: int = Field(...)
 
 class UpdateHistoryEventState(BaseModel):
-    date: date = Field(None)
-    time: time = Field(None)
+    day: date = Field(None)
+    time:str = Field(None)
     state: str = Field(None)
     justification: str = Field(None)
 
 class HistoryEventStateDB(BaseModel):
     id: int = Field(...)
-    date: date = Field(...)
-    time: time = Field(...)
+    day: date = Field(...)
+    time:str = Field(...)
     state: str = Field(...)
     justification: str = Field(None)
     event_id: int = Field(...)

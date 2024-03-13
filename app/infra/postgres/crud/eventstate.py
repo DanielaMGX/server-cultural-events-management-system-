@@ -1,7 +1,7 @@
 from typing import Any, Dict, List
 from app.infra.postgres.crud.base import CRUDBase
-from app.infra.postgres.models.event_state import EventState
-from app.schemas.event_state import CreateEventState, UpdateEventState
+from app.infra.postgres.models.eventstate import EventState
+from app.schemas.eventstate import CreateEventState, UpdateEventState
 
 
 class CRUDEventState(CRUDBase[EventState, CreateEventState, UpdateEventState]):

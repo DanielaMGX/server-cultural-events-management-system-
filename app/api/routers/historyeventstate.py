@@ -5,7 +5,7 @@ from app.schemas.historyeventstate import (
     HistoryEventStateDB,
     UpdateHistoryEventState
 )
-from app.services.service_historyeventstate import service_history_event_state
+from app.services.historyeventstate import service_history_event_state
 
 router = APIRouter()
 
@@ -25,7 +25,7 @@ async def read_history_event_state(id: int = Path(...)):
     return history_event_state
 
 @router.patch("/{id}", response_model=HistoryEventStateDB)
-async def update_history_event_state(id: int = Path(...), history_event_state: UpdateHistoryEventState):
+async def update_history_event_state(id: int, history_event_state: UpdateHistoryEventState):
     return await service_history_event_state.update(_id=id, obj_in=history_event_state)
 
 @router.delete("/{id}")

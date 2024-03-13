@@ -7,7 +7,7 @@ from app.schemas.subeventstate import (
     SubEventStateDB,
     UpdateSubEventState
 )
-from app.services.service_subeventstate import service_subeventstate
+from app.services.subeventstate import service_subeventstate
 
 router = APIRouter()
 

@@ -1,4 +1,4 @@
-from app.infra.postgres.crud.crud_historyeventstate import crud_history_event_state
+from app.infra.postgres.crud.historyeventstate import crud_history_event_state
 from app.services.base import BaseService
 
 class ServiceHistoryEventState(BaseService):

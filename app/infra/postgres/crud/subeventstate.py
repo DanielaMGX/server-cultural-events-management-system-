@@ -10,4 +10,5 @@ UpdateSchemaType = TypeVar('UpdateSchemaType', bound=UpdateSubEventState)
 class CRUDSubEventState(CRUDBase[ModelType, CreateSchemaType, UpdateSchemaType]):
     pass
 
-crud_subeventstate = CRUDSubEventState(SubEventState)
+
+crud_subeventstate = CRUDSubEventState(model=SubEventState)

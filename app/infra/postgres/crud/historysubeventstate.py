@@ -1,5 +1,5 @@
 from app.infra.postgres.crud.base import CRUDBase
-from app.infra.postgres.models.historysubeventstate import HistorySubEventState
+from app.infra.postgres.models.historysubeventstates import HistorySubEventState
 from app.schemas.historysubeventstate import CreateHistorySubEventState, UpdateHistorySubEventState
 
 class CRUDHistorySubEventState(CRUDBase[HistorySubEventState, CreateHistorySubEventState, UpdateHistorySubEventState]):

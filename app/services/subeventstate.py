@@ -1,4 +1,4 @@
-from app.infra.postgres.crud.crud_subeventstate import crud_subeventstate
+from app.infra.postgres.crud.subeventstate import crud_subeventstate
 from app.services.base import BaseService
 
 class ServiceSubEventState(BaseService):
