@@ -6,3 +6,7 @@ from .event import Event
 from .subevent import SubEvent
 from .eventstate import EventState
 from .subeventstate import SubEventState
+from .historyeventstate import HistoryEventState
+from .historysubeventstates import HistorySubEventState
+from .event_has_responsability import EventHasResponsability
+from .sub_event_has_responsability import SubEventHasResponsability

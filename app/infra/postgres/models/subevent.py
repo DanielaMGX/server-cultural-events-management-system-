@@ -1,9 +1,7 @@
 from tortoise import Model, fields
 
 class SubEvent(Model):
-    id = fields.CharField(pk=True, max_length=50)
     event_type = fields.CharField(max_length=255, null=True)
-    event_id = fields.CharField(max_length=255, null=True)
     general_name = fields.CharField(max_length=255, null=True)
     specific_name = fields.CharField(max_length=255, null=True)
     date_start = fields.CharField(max_length=30, null=True)
@@ -31,3 +29,4 @@ class SubEvent(Model):
     ticket_company = fields.CharField(max_length=255, null=True)
     age_restriction = fields.CharField(max_length=255, null=True)
     agreement = fields.CharField(max_length=255, null=True)
+    event = fields.ForeignKeyField("models.Event")

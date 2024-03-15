@@ -1,7 +1,7 @@
 from tortoise import Model, fields
 
+
 class Event(Model):
-    id = fields.CharField(pk=True, max_length=50)
     event_type = fields.CharField(max_length=255, null=True)
     general_name = fields.CharField(max_length=255, null=True)
     specific_name = fields.CharField(max_length=255, null=True)
