@@ -1,29 +1,10 @@
 from tortoise import Model, fields
 
+
 class ResponsabilityByMode(Model):
-    applies = fields.BooleanField() 
+    applies = fields.BooleanField()
     responsability = fields.ForeignKeyField(
-        "models.Responsability",
-        related_name="responsibilities_by_mode"
+        "models.Responsability", related_name="responsability"
     )
-    space = fields.ForeignKeyField(
-        "models.Space",
-        related_name="responsibilities_by_mode"
-    )
-    mode = fields.ForeignKeyField(
-        "models.ContractualMode",
-        related_name="responsibilities_by_mode"
-    )
-
-class responsability(Model):
-    pass
-
-class Mode(Model):
-    pass
-
-class Space(Model):
-    pass
-
-
-
-
+    space = fields.ForeignKeyField("models.Space", related_name="space")
+    mode = fields.ForeignKeyField("models.ContractualMode", related_name="mode")

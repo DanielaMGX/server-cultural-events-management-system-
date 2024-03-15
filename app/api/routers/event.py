@@ -1,12 +1,17 @@
+from asyncio import gather
+from typing import List,Dict
 
-from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
+from fastapi import APIRouter, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 
 from app.schemas.event import CreateEvent, EventDB, UpdateEvent
+from app.schemas.event_has_responsability import CreateEventHasResponsability
 from app.services.event import service_event
+from app.services.event_has_responsability import service_event_has_responsability
+from app.services.responsability import service_responsability
 
 router = APIRouter()
+
 
 @router.get(
     "/",
@@ -24,18 +29,29 @@ async def get_all_events(
     events = await service_event.get_all(skip=skip, limit=limit)
     return events
 
+
 @router.post(
     "/",
     response_class=JSONResponse,
-    response_model=EventDB,
-    status_code=201,
+    status_code=204,
     responses={
-        201: {"description": "Event created"},
+        204: {"description": "Event created"},
     },
 )
 async def create_event(event: CreateEvent):
-    event_db = await service_event.create(obj_in=event)
-    return event_db
+    event_id = await service_event.create(obj_in=event)
+    # TODO: aca se debe buscar las responsabilidades que aplican para el evento
+    responsabilities:List[Dict] = await service_responsability.get_all(skip=0, limit=99999)
+    tasks = []
+    for responsability in responsabilities:
+        event_has_responsability = CreateEventHasResponsability(
+            event_id=event_id, responsability_id=responsability.get("id"), state="Pendiente"
+        )
+        tasks.append(
+            service_event_has_responsability.create(obj_in=event_has_responsability)
+        )
+    await gather(*tasks)
+
 
 @router.get(
     "/{_id}",
@@ -53,6 +69,7 @@ async def get_event_by_id(_id: int = Path(...)):
         raise HTTPException(status_code=404, detail="Event not found")
     return event
 
+
 @router.patch(
     "/{_id}",
     response_class=Response,
@@ -67,6 +84,7 @@ async def update_event(update_event: UpdateEvent, _id: int = Path(...)):
     updated = await service_event.update(_id=_id, obj_in=update_event)
     if not updated:
         raise HTTPException(status_code=404, detail="Event not found")
+
 
 @router.delete(
     "/{_id}",

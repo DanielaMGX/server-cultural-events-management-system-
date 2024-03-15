@@ -1,15 +1,17 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
+
+from fastapi import APIRouter, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 
 from app.schemas.responsability import (
-    Createresponsability, 
-    responsabilityDB, 
-    Updateresponsability
+    Createresponsability,
+    Updateresponsability,
+    responsabilityDB,
 )
 from app.services.responsability import service_responsability
 
 router = APIRouter()
+
 
 @router.get(
     "/",
@@ -27,18 +29,18 @@ async def get_all(
     responsibilities = await service_responsability.get_all(skip=skip, limit=limit)
     return responsibilities
 
+
 @router.post(
     "/",
     response_class=JSONResponse,
-    response_model=responsabilityDB,
-    status_code=201,
+    status_code=204,
     responses={
-        201: {"description": "responsability created"},
+        204: {"description": "responsability created"},
     },
 )
 async def create(responsability: Createresponsability):
-    responsability_db = await service_responsability.create(obj_in=responsability)
-    return responsability_db
+    await service_responsability.create(obj_in=responsability)
+
 
 @router.get(
     "/{_id}",
@@ -56,6 +58,7 @@ async def by_id(_id: int = Path(...)):
         raise HTTPException(status_code=404, detail="responsability not found")
     return responsability
 
+
 @router.patch(
     "/{_id}",
     response_class=Response,
@@ -70,6 +73,7 @@ async def update(update_responsability: Updateresponsability, _id: int = Path(..
     updated = await service_responsability.update(_id=_id, obj_in=update_responsability)
     if not updated:
         raise HTTPException(status_code=404, detail="responsability not found")
+
 
 @router.delete(
     "/{_id}",
