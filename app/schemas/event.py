@@ -4,6 +4,7 @@ from pydantic import BaseModel, EmailStr
 
 
 class CreateEvent(BaseModel):
+    parent_event_id: Optional[int]
     event_type_id: int
     general_name: str
     specific_name: Optional[str]

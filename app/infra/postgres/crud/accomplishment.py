@@ -10,7 +10,14 @@ class CRUDAccomplishment(
         UpdateAccomplishment,
     ]
 ):
-    ...
+    async def complete_accomplishment(
+        self, _id: int, accomplishment: UpdateAccomplishment
+    ) -> int:
+        model = await self.model.get(id=_id)
+        payload = accomplishment.model_dump(exclude_unset=True)
+        payload["check"] = True
+        await model.update_from_dict(payload).save()
+        return True
 
 
 crud_accomplishment = CRUDAccomplishment(model=Accomplishment)

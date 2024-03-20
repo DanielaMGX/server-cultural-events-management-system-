@@ -11,7 +11,6 @@ class CreateAccomplishment(BaseModel):
 class UpdateAccomplishment(BaseModel):
     file_url: Optional[str] = Field(None)
     text: Optional[str] = Field(None)
-    check: Optional[bool] = Field(None)
 
 
 class AccomplishmentDB(BaseModel):

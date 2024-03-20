@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.routers import (
+    accomplishment,
     bucket,
     contractual_mode,
     event,
@@ -37,4 +38,7 @@ api_router.include_router(
     event_has_responsability.router,
     prefix="/event-has-responsability",
     tags=["Event Has Responsability"],
+)
+api_router.include_router(
+    accomplishment.router, prefix="/accomplishments", tags=["Accomplishments"]
 )
