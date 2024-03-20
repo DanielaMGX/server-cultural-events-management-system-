@@ -2,7 +2,6 @@ from tortoise import Model, fields
 
 
 class EventHasResponsability(Model):
-    state = fields.CharField(max_length=255)
-    deliverable = fields.CharField(max_length=255, null=True)
-    responsability = fields.ForeignKeyField("models.Responsability")
+    accomplishment = fields.ForeignKeyField("models.Accomplishment")
+    responsability_by_mode = fields.ForeignKeyField("models.ResponsabilityByMode")
     event = fields.ForeignKeyField("models.Event")

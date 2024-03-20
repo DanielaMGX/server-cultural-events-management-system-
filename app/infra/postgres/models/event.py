@@ -2,7 +2,8 @@ from tortoise import Model, fields
 
 
 class Event(Model):
-    event_type = fields.CharField(max_length=255, null=True)
+    parent_event = fields.ForeignKeyField("models.Event", null=True)
+    event_type = fields.ForeignKeyField("models.ContractualMode")
     general_name = fields.CharField(max_length=255, null=True)
     specific_name = fields.CharField(max_length=255, null=True)
     date_start = fields.CharField(max_length=50, null=True)

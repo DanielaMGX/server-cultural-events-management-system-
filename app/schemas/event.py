@@ -4,7 +4,7 @@ from pydantic import BaseModel, EmailStr
 
 
 class CreateEvent(BaseModel):
-    event_type: Optional[str]
+    event_type_id: int
     general_name: str
     specific_name: Optional[str]
     date_start: str
@@ -42,7 +42,7 @@ class EventDB(CreateEvent):
 
 
 class UpdateEvent(BaseModel):
-    event_type: Optional[str] = None
+    event_type_id: Optional[str] = None
     state: Optional[str] = None
     date_state: Optional[str] = None
     general_name: Optional[str] = None
@@ -72,13 +72,3 @@ class UpdateEvent(BaseModel):
     ticket_company: Optional[str] = None
     age_restriction: Optional[str] = None
     agreement: Optional[str] = None
-
-
-class CreateSubEvent(CreateEvent):
-    event_id: int
-
-
-class SubEventDB(CreateSubEvent): ...
-
-
-class UpdateSubEvent(UpdateEvent): ...

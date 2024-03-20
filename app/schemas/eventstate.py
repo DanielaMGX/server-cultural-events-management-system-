@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -40,11 +40,3 @@ class EventStateDB(BaseModel):
 
     class Config:
         from_attributes = True
-
-
-class EventStateInResponse(BaseModel):
-    event_state: EventStateDB
-
-
-class EventStatesInResponse(BaseModel):
-    event_states: List[EventStateDB]

@@ -39,7 +39,7 @@ https://programadorwebvalencia.com/instalar-postgresql-en-osx/
 
 ### Instalación 🔧
 
-_Una vez instalados Docker y Postgresql se abre una terminal dentro de la 
+_Una vez instalados Docker y Postgresql se abre una terminal dentro de la
 ruta del proyecto y se ejecuta el siguiente comando_
 
 En Ubuntu:

@@ -20,7 +20,7 @@ services:
       - ENVIRONMENT=dev
       - POSTGRES_DATABASE_URL=postgres://postgres:postgres@aplicativo-db:5432/aplicativo_db
       - POSTGRES_DATABASE_TEST_URL=sqlite://./storage/aplicativo_db_test
-      - DEFAULT_DATA=True
+      - DEFAULT_DATA=False
       - BUCKET_NAME=teatro-files
     networks:
       - aplicativo

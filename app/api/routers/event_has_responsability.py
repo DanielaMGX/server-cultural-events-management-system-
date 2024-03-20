@@ -3,7 +3,10 @@ from typing import List
 from fastapi import APIRouter, HTTPException, Path, Query
 from fastapi.responses import JSONResponse
 
-from app.schemas.event_has_responsability import EventHasResponsabilityDB,UpdateEventHasResponsability
+from app.schemas.event_has_responsability import (
+    EventHasResponsabilityDB,
+    UpdateEventHasResponsability,
+)
 from app.services.event_has_responsability import service_event_has_responsability
 
 router = APIRouter()
@@ -25,8 +28,6 @@ async def get_by_event_id(
     return events
 
 
-
-
 @router.patch(
     "/{_id}",
     status_code=204,
@@ -34,8 +35,11 @@ async def get_by_event_id(
         204: {"description": "Event updated"},
     },
 )
-async def update(update_event_has_responsability: UpdateEventHasResponsability, _id: int = Path(...)):
-    updated = await service_event_has_responsability.update(_id=_id, obj_in=update_event_has_responsability)
+async def update(
+    update_event_has_responsability: UpdateEventHasResponsability, _id: int = Path(...)
+):
+    updated = await service_event_has_responsability.update(
+        _id=_id, obj_in=update_event_has_responsability
+    )
     if not updated:
         raise HTTPException(status_code=404, detail="Event not found")
-

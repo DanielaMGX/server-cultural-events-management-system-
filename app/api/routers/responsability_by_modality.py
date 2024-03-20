@@ -4,10 +4,10 @@ from fastapi import APIRouter, Depends, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 
 from app.schemas.responsability_by_modality import (
-    CreateresponsabilityByMode, 
-    responsabilityByModeDB, 
-    SearchresponsabilityByMode, 
-    UpdateresponsabilityByMode
+    CreateresponsabilityByMode,
+    SearchresponsabilityByMode,
+    UpdateresponsabilityByMode,
+    responsabilityByModeDB,
 )
 from app.services.responsability_by_modality import service_responsability_by_mode
 
@@ -44,7 +44,9 @@ async def get_all(
     },
 )
 async def create(new_responsability: CreateresponsabilityByMode):
-    responsability = await service_responsability_by_mode.create(obj_in=new_responsability)
+    responsability = await service_responsability_by_mode.create(
+        obj_in=new_responsability
+    )
     return responsability
 
 
@@ -75,7 +77,9 @@ async def by_id(_id: int = Path(...)):
         404: {"description": "responsability by mode not found"},
     },
 )
-async def update(update_responsability: UpdateresponsabilityByMode, _id: int = Path(...)):
+async def update(
+    update_responsability: UpdateresponsabilityByMode, _id: int = Path(...)
+):
     await service_responsability_by_mode.update(_id=_id, obj_in=update_responsability)
 
 

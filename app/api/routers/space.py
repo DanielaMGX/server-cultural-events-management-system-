@@ -1,11 +1,13 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
-from fastapi.responses import JSONResponse, Response
+
+from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import JSONResponse
 
 from app.schemas.space import CreateSpace, SpaceDB, UpdateSpace
 from app.services.space import service_space
 
 router = APIRouter()
+
 
 @router.get(
     "/",
@@ -16,6 +18,7 @@ router = APIRouter()
 async def get_all(skip: int = Query(0), limit: int = Query(10)):
     return await service_space.get_all(skip=skip, limit=limit)
 
+
 @router.post(
     "/",
     response_class=JSONResponse,
@@ -25,6 +28,7 @@ async def get_all(skip: int = Query(0), limit: int = Query(10)):
 async def create(space: CreateSpace):
     return await service_space.create(obj_in=space)
 
+
 @router.get(
     "/{id}",
     response_class=JSONResponse,
@@ -32,22 +36,24 @@ async def create(space: CreateSpace):
     status_code=200,
 )
 async def read(id: int):
-    space = await service_space.get_by_id(id)
+    space = await service_space.get_by_id(_id=id)
     if space is None:
         raise HTTPException(status_code=404, detail="Space not found")
     return space
+
 
 @router.patch(
     "/{id}",
     status_code=204,
 )
 async def update(id: int, space: UpdateSpace):
-    updated = await service_space.update(id, obj_in=space)
+    updated = await service_space.update(_id=id, obj_in=space)
     if not updated:
         raise HTTPException(status_code=404, detail="Space not found")
 
+
 @router.delete("/{id}", status_code=204)
 async def delete(id: int):
-    deleted = await service_space.delete(id)
+    deleted = await service_space.delete(_id=id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Space not found")

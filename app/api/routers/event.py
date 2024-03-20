@@ -1,5 +1,5 @@
 from asyncio import gather
-from typing import List,Dict
+from typing import Dict, List
 
 from fastapi import APIRouter, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
@@ -41,11 +41,15 @@ async def get_all_events(
 async def create_event(event: CreateEvent):
     event_id = await service_event.create(obj_in=event)
     # TODO: aca se debe buscar las responsabilidades que aplican para el evento
-    responsabilities:List[Dict] = await service_responsability.get_all(skip=0, limit=99999)
+    responsabilities: List[Dict] = await service_responsability.get_all(
+        skip=0, limit=99999
+    )
     tasks = []
     for responsability in responsabilities:
         event_has_responsability = CreateEventHasResponsability(
-            event_id=event_id, responsability_id=responsability.get("id"), state="Pendiente"
+            event_id=event_id,
+            responsability_id=responsability.get("id"),
+            state="Pendiente",
         )
         tasks.append(
             service_event_has_responsability.create(obj_in=event_has_responsability)

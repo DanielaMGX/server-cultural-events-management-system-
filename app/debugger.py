@@ -1,6 +1,5 @@
-from os import getenv
-
 from distutils.util import strtobool
+from os import getenv
 
 
 def initialize_fastapi_server_debugger_if_needed():
