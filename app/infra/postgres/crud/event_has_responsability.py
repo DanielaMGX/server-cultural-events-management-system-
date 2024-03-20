@@ -15,12 +15,8 @@ class CRUDEventHasResponsability(
         UpdateEventHasResponsability,
     ]
 ):
-    def __init__(self, *, model: EventHasResponsability) -> None:
-        super().__init__(model=model)
-        self.__model = model
-
     async def get_by_event_id(self, *, event_id: int) -> List[Dict[str, Any]]:
-        objs_db = await self.__model.filter(event_id=event_id)
+        objs_db = await self.model.filter(event_id=event_id)
         return objs_db
 
 

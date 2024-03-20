@@ -1,19 +1,17 @@
 from fastapi import APIRouter
 
 from app.api.routers import (
+    accomplishment,
     bucket,
     contractual_mode,
     event,
     event_has_responsability,
     eventstate,
     historyeventstate,
-    historysubeventstate,
     responsability,
     responsability_by_modality,
     root,
     space,
-    subevent,
-    subeventstate,
 )
 
 api_router = APIRouter()
@@ -31,17 +29,8 @@ api_router.include_router(
 )
 api_router.include_router(space.router, prefix="/spaces", tags=["Spaces"])
 api_router.include_router(event.router, prefix="/events", tags=["Events"])
-api_router.include_router(subevent.router, prefix="/subevents", tags=["Sub Events"])
 api_router.include_router(bucket.router, prefix="/bucket", tags=["Bucket"])
 api_router.include_router(eventstate.router, prefix="/eventstate", tags=["Event State"])
-api_router.include_router(
-    subeventstate.router, prefix="/subeventstate", tags=["Sub Event State"]
-)
-api_router.include_router(
-    historysubeventstate.router,
-    prefix="/historysubevent",
-    tags=["History Sub Event State"],
-)
 api_router.include_router(
     historyeventstate.router, prefix="/historyeventstate", tags=["History Event State"]
 )
@@ -49,4 +38,7 @@ api_router.include_router(
     event_has_responsability.router,
     prefix="/event-has-responsability",
     tags=["Event Has Responsability"],
+)
+api_router.include_router(
+    accomplishment.router, prefix="/accomplishments", tags=["Accomplishments"]
 )

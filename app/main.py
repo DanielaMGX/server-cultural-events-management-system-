@@ -1,15 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.default_data import create_default_data
-from app.services.contractual_mode import service_contractual_mode
 from app.api.api import api_router
 from app.config import settings
 from app.debugger import initialize_fastapi_server_debugger_if_needed
-from app.infra.postgres.config import (
-    generate_schema,
-    init_db,
-)
+from app.default_data import create_default_data
+from app.infra.postgres.config import generate_schema, init_db
+from app.services.contractual_mode import service_contractual_mode
 
 
 def create_application():

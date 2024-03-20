@@ -4,14 +4,15 @@ from fastapi import APIRouter, Depends, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 
 from app.schemas.eventstate import (
-    CreateEventState, 
-    EventStateDB, 
-    SearchEventState, 
-    UpdateEventState
+    CreateEventState,
+    EventStateDB,
+    SearchEventState,
+    UpdateEventState,
 )
 from app.services.eventstate import service_event_state
 
 router = APIRouter()
+
 
 @router.get(
     "",
@@ -32,6 +33,7 @@ async def get_all(
     )
     return event_states
 
+
 @router.post(
     "",
     response_class=JSONResponse,
@@ -44,6 +46,7 @@ async def get_all(
 async def create(new_event_state: CreateEventState):
     event_state = await service_event_state.create(obj_in=new_event_state)
     return event_state
+
 
 @router.get(
     "/{_id}",
@@ -61,6 +64,7 @@ async def by_id(_id: int = Path(...)):
         raise HTTPException(status_code=404, detail="Event state not found")
     return event_state
 
+
 @router.patch(
     "/{_id}",
     response_class=Response,
@@ -74,6 +78,7 @@ async def update(update_event_state: UpdateEventState, _id: int = Path(...)):
     result = await service_event_state.update(_id=_id, obj_in=update_event_state)
     if result == 0:
         raise HTTPException(status_code=404, detail="Event state not found")
+
 
 @router.delete(
     "/{_id}",

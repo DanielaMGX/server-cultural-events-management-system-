@@ -1,7 +1,3 @@
-from typing import List
-
-from pydantic import BaseModel, Field
-
 from pydantic import BaseModel, Field
 
 
@@ -20,11 +16,3 @@ class responsabilityDB(Createresponsability):
 
     class Config:
         from_attributes = True
-
-
-class responsabilityInResponse(BaseModel):
-    responsability: responsabilityDB
-
-
-class ResponsibilitiesInResponse(BaseModel):
-    responsibilities: List[responsabilityDB]

@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -35,11 +35,3 @@ class responsabilityByModeDB(BaseModel):
 
     class Config:
         from_attributes = True
-
-
-class responsabilityByModeInResponse(BaseModel):
-    responsability_by_mode: responsabilityByModeDB
-
-
-class ResponsibilitiesByModeInResponse(BaseModel):
-    responsibilities_by_mode: List[responsabilityByModeDB]

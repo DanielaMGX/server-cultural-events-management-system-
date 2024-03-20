@@ -1,14 +1,16 @@
 from asyncio import gather
-from typing import List,Dict
+from typing import List
 
 from fastapi import APIRouter, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 
+from app.schemas.accomplishment import CreateAccomplishment
 from app.schemas.event import CreateEvent, EventDB, UpdateEvent
 from app.schemas.event_has_responsability import CreateEventHasResponsability
+from app.services.accomplishment import service_accomplishment
 from app.services.event import service_event
 from app.services.event_has_responsability import service_event_has_responsability
-from app.services.responsability import service_responsability
+from app.services.responsability_by_modality import service_responsability_by_mode
 
 router = APIRouter()
 
@@ -40,15 +42,31 @@ async def get_all_events(
 )
 async def create_event(event: CreateEvent):
     event_id = await service_event.create(obj_in=event)
-    # TODO: aca se debe buscar las responsabilidades que aplican para el evento
-    responsabilities:List[Dict] = await service_responsability.get_all(skip=0, limit=99999)
-    tasks = []
-    for responsability in responsabilities:
-        event_has_responsability = CreateEventHasResponsability(
-            event_id=event_id, responsability_id=responsability.get("id"), state="Pendiente"
+    responsability_by_modes = (
+        await service_responsability_by_mode.get_applies_by_mode_and_space(
+            mode=event.event_type_id,
+            space_name=event.place or "",
         )
+    )
+    tasks = []
+
+    async def create_event_has_responsability(event_id, responsability_by_mode_id):
+        accomplishment_id = await service_accomplishment.create(
+            obj_in=CreateAccomplishment()
+        )
+        await service_event_has_responsability.create(
+            obj_in=CreateEventHasResponsability(
+                event_id=event_id,
+                responsability_by_mode_id=responsability_by_mode_id,
+                accomplishment_id=accomplishment_id,
+            )
+        )
+
+    for responsability_by_mode in responsability_by_modes:
         tasks.append(
-            service_event_has_responsability.create(obj_in=event_has_responsability)
+            create_event_has_responsability(
+                event_id=event_id, responsability_by_mode_id=responsability_by_mode.id
+            )
         )
     await gather(*tasks)
 
