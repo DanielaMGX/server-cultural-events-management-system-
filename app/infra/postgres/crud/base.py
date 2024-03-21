@@ -15,7 +15,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):  # type:
         limit: int = 10,
     ) -> List[Dict[str, Any]]:
         query = self.model.filter(**payload) if payload else self.model
-        model = await query.all().offset(skip).limit(limit).values()
+        model = await query.all().offset(skip).limit(limit).all()
         return model
 
     async def create(self, *, obj_in: CreateSchemaType) -> int:
@@ -35,7 +35,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):  # type:
 
     async def get_by_id(self, *, _id: int) -> Optional[Dict[str, Any]]:
         if _id:
-            model = await self.model.filter(id=_id).first().values()
+            model = await self.model.filter(id=_id).first()
             if model:
                 return model
         return None
