@@ -23,15 +23,16 @@ class UpdateresponsabilityByMode(BaseModel):
     space_id: Optional[int] = Field(None)
 
 
-class responsabilityByModeDB(BaseModel):
+class ResponsabilityByModeDB(BaseModel):
     applies: bool = Field(...)
     responsability_id: int = Field(...)
     mode_id: int = Field(...)
     space_id: int = Field(...)
     id: int = Field(...)
-    responsability_name: Optional[str] = Field(None)
-    mode_name: Optional[str] = Field(None)
-    space_name: Optional[str] = Field(None)
+    responsability__name: Optional[str] = Field(None, alias="responsability_name")
+    mode__name: Optional[str] = Field(None, alias="mode_name")
+    space__name: Optional[str] = Field(None, alias="space_name")
 
     class Config:
         from_attributes = True
+        populate_by_name = True

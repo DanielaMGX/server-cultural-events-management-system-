@@ -5,9 +5,9 @@ from fastapi.responses import JSONResponse, Response
 
 from app.schemas.responsability_by_modality import (
     CreateresponsabilityByMode,
+    ResponsabilityByModeDB,
     SearchresponsabilityByMode,
     UpdateresponsabilityByMode,
-    responsabilityByModeDB,
 )
 from app.services.responsability_by_modality import service_responsability_by_mode
 
@@ -17,7 +17,7 @@ router = APIRouter()
 @router.get(
     "",
     response_class=JSONResponse,
-    response_model=List[responsabilityByModeDB],
+    response_model=List[ResponsabilityByModeDB],
     status_code=200,
     responses={
         200: {"description": "responsibilities by mode found"},
@@ -37,7 +37,7 @@ async def get_all(
 @router.post(
     "",
     response_class=JSONResponse,
-    response_model=responsabilityByModeDB,
+    response_model=ResponsabilityByModeDB,
     status_code=201,
     responses={
         201: {"description": "responsability by mode created"},
@@ -53,7 +53,7 @@ async def create(new_responsability: CreateresponsabilityByMode):
 @router.get(
     "/{_id}",
     response_class=JSONResponse,
-    response_model=responsabilityByModeDB,
+    response_model=ResponsabilityByModeDB,
     status_code=200,
     responses={
         200: {"description": "responsability by mode found"},
