@@ -1,8 +1,8 @@
 import json
 
 from app.schemas.contractual_mode import CreateContractualMode
-from app.schemas.responsability import Createresponsability
-from app.schemas.responsability_by_modality import CreateresponsabilityByMode
+from app.schemas.responsability import CreateResponsability
+from app.schemas.responsability_by_modality import CreateResponsabilityByMode
 from app.schemas.space import CreateSpace
 from app.services.contractual_mode import service_contractual_mode
 from app.services.responsability import service_responsability
@@ -32,7 +32,7 @@ async def create_default_data():
         if isinstance(data, list):
             print("CREATING RESPONSABILITIES")
             for obj in data:
-                obj_in = Createresponsability(**obj)
+                obj_in = CreateResponsability(**obj)
                 await service_responsability.create(obj_in=obj_in)
 
     with open("default_data/contractual_mode.json") as file:
@@ -47,5 +47,5 @@ async def create_default_data():
             if isinstance(data, list):
                 print("CREATING RESPONSABILITIES BY MODALITIES")
                 for obj in data:
-                    obj_in = CreateresponsabilityByMode(**obj)
+                    obj_in = CreateResponsabilityByMode(**obj)
                     await service_responsability_by_mode.create(obj_in=obj_in)

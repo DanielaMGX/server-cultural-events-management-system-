@@ -45,7 +45,7 @@ async def create_event(event: CreateEvent):
     responsability_by_modes = (
         await service_responsability_by_mode.get_applies_by_mode_and_space(
             mode=event.event_type_id,
-            space_name=event.place or "",
+            space=event.place_id,
         )
     )
     tasks = []

@@ -12,6 +12,7 @@ from app.api.routers import (
     responsability_by_modality,
     root,
     space,
+    specific_responsability,
 )
 
 api_router = APIRouter()
@@ -41,4 +42,10 @@ api_router.include_router(
 )
 api_router.include_router(
     accomplishment.router, prefix="/accomplishments", tags=["Accomplishments"]
+)
+
+api_router.include_router(
+    specific_responsability.router,
+    prefix="/specific-responsability",
+    tags=["Specific Responsability"],
 )

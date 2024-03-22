@@ -1,42 +1,42 @@
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class CreateEvent(BaseModel):
-    parent_event_id: Optional[int]
-    event_type_id: int
-    general_name: str
-    specific_name: Optional[str]
-    date_start: str
-    date_finishing: str
-    hour_start: str
-    hour_finishing: str
-    place: Optional[str]
-    user_name: str
-    phone: Optional[str]
-    identification_type: str
-    identification_value: str
-    email: Optional[EmailStr]
-    description: Optional[str]
-    observation: Optional[str]
-    duration: Optional[str]
-    mounting_date: Optional[str]
-    mounting_start_hour: Optional[str]
-    mounting_finishing_hour: Optional[str]
-    technic_contact: Optional[str]
-    rider: Optional[str]
-    min_to_min: Optional[str]
-    communication_contact: Optional[str]
-    pulep: Optional[str]
-    access_data: Optional[str]
-    ticket_company: Optional[str]
-    age_restriction: Optional[str]
-    agreement: Optional[str]
+    parent_event_id: Optional[int] = Field(None)
+    event_type_id: int = Field(...)
+    general_name: str = Field(...)
+    specific_name: Optional[str] = Field(None)
+    date_start: str = Field(...)
+    date_finishing: str = Field(...)
+    hour_start: str = Field(...)
+    hour_finishing: str = Field(...)
+    place_id: int = Field(...)
+    user_name: str = Field(...)
+    phone: Optional[str] = Field(None)
+    identification_type: str = Field(...)
+    identification_value: str = Field(...)
+    email: Optional[EmailStr] = Field(None)
+    description: Optional[str] = Field(None)
+    observation: Optional[str] = Field(None)
+    duration: Optional[str] = Field(None)
+    mounting_date: Optional[str] = Field(None)
+    mounting_start_hour: Optional[str] = Field(None)
+    mounting_finishing_hour: Optional[str] = Field(None)
+    technic_contact: Optional[str] = Field(None)
+    rider: Optional[str] = Field(None)
+    min_to_min: Optional[str] = Field(None)
+    communication_contact: Optional[str] = Field(None)
+    pulep: Optional[str] = Field(None)
+    access_data: Optional[str] = Field(None)
+    ticket_company: Optional[str] = Field(None)
+    age_restriction: Optional[str] = Field(None)
+    agreement: Optional[str] = Field(None)
 
 
 class EventDB(CreateEvent):
-    id: int
+    id: int = Field(...)
 
     class Config:
         from_attributes = True
@@ -52,7 +52,7 @@ class UpdateEvent(BaseModel):
     date_finishing: Optional[str] = None
     hour_start: Optional[str] = None
     hour_finishing: Optional[str] = None
-    place: Optional[str] = None
+    place_id: Optional[int] = None
     user_name: Optional[str] = None
     phone: Optional[str] = None
     identification_type: Optional[str] = None

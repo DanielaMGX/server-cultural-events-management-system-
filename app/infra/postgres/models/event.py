@@ -10,7 +10,7 @@ class Event(Model):
     date_finishing = fields.CharField(max_length=50, null=True)
     hour_start = fields.CharField(max_length=50, null=True)
     hour_finishing = fields.CharField(max_length=50, null=True)
-    place = fields.CharField(max_length=255, null=True)
+    place = fields.ForeignKeyField("models.Space")
     user_name = fields.CharField(max_length=255, null=True)
     phone = fields.CharField(max_length=50, null=True)
     identification_type = fields.CharField(max_length=255, null=True)

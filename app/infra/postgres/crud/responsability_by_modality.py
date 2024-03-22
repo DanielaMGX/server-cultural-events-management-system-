@@ -3,17 +3,17 @@ from typing import Any, Dict, List, Optional
 from app.infra.postgres.crud.base import CRUDBase
 from app.infra.postgres.models.responsability_by_modality import ResponsabilityByMode
 from app.schemas.responsability_by_modality import (
-    CreateresponsabilityByMode,
-    UpdateresponsabilityByMode,
+    CreateResponsabilityByMode,
+    UpdateResponsabilityByMode,
 )
 
 
 class CRUDresponsabilityByMode(
     CRUDBase[
-        ResponsabilityByMode, CreateresponsabilityByMode, UpdateresponsabilityByMode
+        ResponsabilityByMode, CreateResponsabilityByMode, UpdateResponsabilityByMode
     ]
 ):
-    async def create(self, *, obj_in: CreateresponsabilityByMode) -> int:
+    async def create(self, *, obj_in: CreateResponsabilityByMode) -> int:
         obj_in_data = obj_in.dict()
 
         model = self.model(
@@ -26,11 +26,9 @@ class CRUDresponsabilityByMode(
         await model.save()
         return model
 
-    async def get_applies_by_mode_and_space(
-        self, *, mode: int, space_name: str
-    ) -> list:
+    async def get_applies_by_mode_and_space(self, *, mode: int, space: int) -> list:
         model = await self.model.filter(
-            applies=True, mode_id=mode, space__name=space_name
+            applies=True, mode_id=mode, space_id=space
         ).all()
         if model is None:
             return []
@@ -46,6 +44,7 @@ class CRUDresponsabilityByMode(
         query = self.model.filter(**payload) if payload else self.model
         model = (
             await query.all()
+            .order_by("id")
             .prefetch_related(
                 "mode",
                 "responsability",
@@ -53,7 +52,6 @@ class CRUDresponsabilityByMode(
             )
             .offset(skip)
             .limit(limit)
-            .all()
             .values(
                 "id",
                 "applies",

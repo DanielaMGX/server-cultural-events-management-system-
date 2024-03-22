@@ -12,11 +12,10 @@ class CRUDAccomplishment(
 ):
     async def complete_accomplishment(
         self, _id: int, accomplishment: UpdateAccomplishment
-    ) -> int:
-        model = await self.model.get(id=_id)
+    ) -> bool:
         payload = accomplishment.model_dump(exclude_unset=True)
         payload["check"] = True
-        await model.update_from_dict(payload).save()
+        await self.model.filter(id=_id).update(**payload)
         return True
 
 

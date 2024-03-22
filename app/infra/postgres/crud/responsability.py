@@ -1,10 +1,10 @@
 from app.infra.postgres.crud.base import CRUDBase
 from app.infra.postgres.models.responsability import Responsability
-from app.schemas.responsability import Createresponsability, Updateresponsability
+from app.schemas.responsability import CreateResponsability, UpdateResponsability
 
 
 class CRUDresponsability(
-    CRUDBase[Responsability, Createresponsability, Updateresponsability]
+    CRUDBase[Responsability, CreateResponsability, UpdateResponsability]
 ):
     ...
 
