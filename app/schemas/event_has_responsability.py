@@ -17,9 +17,9 @@ class UpdateEventHasResponsability(BaseModel):
 class EventHasResponsabilityDB(BaseModel):
     id: int
     event_id: int
-    responsability_by_mode_id: int
+    responsability_by_mode_id: Optional[int]
     accomplishment_id: int
-    specific_responsability_id: int
+    specific_responsability_id: Optional[int]
 
     class Config:
         from_attributes = True
