@@ -4,9 +4,9 @@ from fastapi import APIRouter, HTTPException, Path, Query
 from fastapi.responses import JSONResponse, Response
 
 from app.schemas.responsability import (
-    Createresponsability,
-    Updateresponsability,
-    responsabilityDB,
+    CreateResponsability,
+    ResponsabilityDB,
+    UpdateResponsability,
 )
 from app.services.responsability import service_responsability
 
@@ -16,7 +16,7 @@ router = APIRouter()
 @router.get(
     "/",
     response_class=JSONResponse,
-    response_model=List[responsabilityDB],
+    response_model=List[ResponsabilityDB],
     status_code=200,
     responses={
         200: {"description": "Responsibilities found"},
@@ -38,14 +38,14 @@ async def get_all(
         204: {"description": "responsability created"},
     },
 )
-async def create(responsability: Createresponsability):
+async def create(responsability: CreateResponsability):
     await service_responsability.create(obj_in=responsability)
 
 
 @router.get(
     "/{_id}",
     response_class=JSONResponse,
-    response_model=responsabilityDB,
+    response_model=ResponsabilityDB,
     status_code=200,
     responses={
         200: {"description": "responsability found"},
@@ -69,7 +69,7 @@ async def by_id(_id: int = Path(...)):
         404: {"description": "responsability not found"},
     },
 )
-async def update(update_responsability: Updateresponsability, _id: int = Path(...)):
+async def update(update_responsability: UpdateResponsability, _id: int = Path(...)):
     updated = await service_responsability.update(_id=_id, obj_in=update_responsability)
     if not updated:
         raise HTTPException(status_code=404, detail="responsability not found")

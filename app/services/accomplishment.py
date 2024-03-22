@@ -6,7 +6,7 @@ from app.services.base import BaseService
 class ServiceAccomplishment(BaseService):
     async def complete_accomplishment(
         self, _id: int, accomplishment: UpdateAccomplishment
-    ) -> int:
+    ) -> bool:
         return await crud_accomplishment.complete_accomplishment(
             _id=_id, accomplishment=accomplishment
         )

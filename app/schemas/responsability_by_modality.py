@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class CreateresponsabilityByMode(BaseModel):
+class CreateResponsabilityByMode(BaseModel):
     applies: bool = Field(...)
     responsability: int = Field(...)
     space: int = Field(...)
@@ -17,7 +17,7 @@ class SearchresponsabilityByMode(BaseModel):
     mode_id: Optional[int] = Field(None)
 
 
-class UpdateresponsabilityByMode(BaseModel):
+class UpdateResponsabilityByMode(BaseModel):
     applies: Optional[bool] = Field(None)
     responsability: Optional[int] = Field(None)
     space_id: Optional[int] = Field(None)

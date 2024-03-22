@@ -7,3 +7,4 @@ from .historyeventstate import HistoryEventState
 from .responsability import Responsability
 from .responsability_by_modality import ResponsabilityByMode
 from .space import Space
+from .specific_responsability import SpecificResponsability
