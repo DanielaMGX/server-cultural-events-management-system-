@@ -1,0 +1,33 @@
+[
+    {
+        "parent_event_id": null,
+        "event_type_id": 1,
+        "general_name": "string",
+        "specific_name": "string",
+        "date_start": "string",
+        "date_finishing": "string",
+        "hour_start": "string",
+        "hour_finishing": "string",
+        "place_id": 1,
+        "user_name": "string",
+        "phone": "string",
+        "identification_type": "string",
+        "identification_value": "string",
+        "email": "user@example.com",
+        "description": "string",
+        "observation": "string",
+        "duration": "string",
+        "mounting_date": "string",
+        "mounting_start_hour": "string",
+        "mounting_finishing_hour": "string",
+        "technic_contact": "string",
+        "rider": "string",
+        "min_to_min": "string",
+        "communication_contact": "string",
+        "pulep": "string",
+        "access_data": "string",
+        "ticket_company": "string",
+        "age_restriction": "string",
+        "agreement": "string"
+    }
+]
